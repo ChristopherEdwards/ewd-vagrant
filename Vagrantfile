@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
      ./gtminstall --utf8 default
      gtmver=$(ls -1 /usr/lib/fis-gtm)
      echo "source /usr/lib/fis-gtm/$gtmver/gtmprofile" >> /home/ubuntu/.profile
-     ln -s $gtm_dist/libgtmshr.so /vagrant/lib
+     ln -s $gtm_dist/libgtmshr.so /usr/local/lib
      ldconfig
      rm gtminstall
      # Install node.js
