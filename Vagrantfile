@@ -94,23 +94,23 @@ Vagrant.configure("2") do |config|
      rm install.sh
      popd
      # Install ewd3
-     mkdir -p /usr/local/ewd3
-     chown -R ubuntu:ubuntu /usr/local/ewd3
-     su ubuntu -c "source /home/ubuntu/.profile && pushd /usr/local/ewd3 && npm install ewd-xpress ewd-xpress-monitor nodem"
+     mkdir -p /vagrant/ewd3
+     chown -R ubuntu:ubuntu /vagrant/ewd3
+     su ubuntu -c "source /home/ubuntu/.profile && pushd /vagrant/ewd3 && npm install ewd-xpress ewd-xpress-monitor nodem"
      # Configure nodem
-     echo 'export GTMCI=$(find /usr/local/ewd3 -iname nodem.ci)' >> /home/ubuntu/.profile
-     echo 'nodemgtmr=$(find /usr/local/ewd3 -iname v4wnode.m | tail -n1 | xargs dirname)' >> /home/ubuntu/.profile
+     echo 'export GTMCI=$(find /vagrant/ewd3 -iname nodem.ci)' >> /home/ubuntu/.profile
+     echo 'nodemgtmr=$(find /vagrant/ewd3 -iname v4wnode.m | tail -n1 | xargs dirname)' >> /home/ubuntu/.profile
      echo 'echo $gtmroutines | fgrep $nodemgtmr || export gtmroutines="$nodemgtmr $gtmroutines"' >> /home/ubuntu/.profile
      # Configure ewd-xpress
-     su ubuntu -c "cp /usr/local/ewd3/node_modules/ewd-xpress/example/ewd-xpress-gtm.js /usr/local/ewd3"
-     mkdir -p /usr/local/ewd3/www/ewd-xpress-monitor
-     chown -R ubuntu:ubuntu /usr/local/ewd3
-     su ubuntu -c "cp /usr/local/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js /usr/local/ewd3/www/ewd-xpress-monitor"
-     su ubuntu -c "cp /usr/local/ewd3/node_modules/ewd-xpress-monitor/www/*.html /usr/local/ewd3/www/ewd-xpress-monitor"
-     su ubuntu -c "cp /usr/local/ewd3/node_modules/ewd-xpress-monitor/www/*.css /usr/local/ewd3/www/ewd-xpress-monitor"
-     chown -R ubuntu:ubuntu /usr/local/ewd3
+     su ubuntu -c "cp /vagrant/ewd3/node_modules/ewd-xpress/example/ewd-xpress-gtm.js /vagrant/ewd3"
+     mkdir -p /vagrant/ewd3/www/ewd-xpress-monitor
+     chown -R ubuntu:ubuntu /vagrant/ewd3
+     su ubuntu -c "cp /vagrant/ewd3/node_modules/ewd-xpress-monitor/www/bundle.js /vagrant/ewd3/www/ewd-xpress-monitor"
+     su ubuntu -c "cp /vagrant/ewd3/node_modules/ewd-xpress-monitor/www/*.html /vagrant/ewd3/www/ewd-xpress-monitor"
+     su ubuntu -c "cp /vagrant/ewd3/node_modules/ewd-xpress-monitor/www/*.css /vagrant/ewd3/www/ewd-xpress-monitor"
+     chown -R ubuntu:ubuntu /vagrant/ewd3
      echo 'EWD-Xpress installed!'
      echo 'to start ewd3 run the following commands when logged in'
-     echo 'pushd /usr/local/ewd3 && node ewd-xpress-gtm.js && popd'
+     echo 'pushd /vagrant/ewd3 && node ewd-xpress-gtm.js && popd'
    SHELL
 end
